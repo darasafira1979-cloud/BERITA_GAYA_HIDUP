@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVID — Lifestyle Stories</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #30233f;
+            --peach: #e8a9bd;
+            --cream: #fbf7f0;
+            --orange: #e98c55;
+            --muted: #796d76;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--dark);
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 1px solid #e8dfd6;
+            background: var(--cream);
+        }
+
+        .topbar {
+            min-height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 31px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #b56d86;
+        }
+
+        .login {
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        /* PAGE TITLE */
+        .page-title {
+            padding: 65px 0 45px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #b56d86;
+            text-transform: uppercase;
+        }
+
+        .page-title h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(43px, 7vw, 76px);
+            font-weight: normal;
+            letter-spacing: -2px;
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .page-title h1 span {
+            color: #c87591;
+            font-style: italic;
+        }
+
+        .page-title p {
+            max-width: 610px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* FEATURED STORY */
+        .featured {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            min-height: 390px;
+            background: #f0e3e5;
+            margin-bottom: 70px;
+            overflow: hidden;
+        }
+
+        .featured-image {
+            min-height: 390px;
+        }
+
+        .featured-image img {
+            height: 100%;
+            min-height: 390px;
+        }
+
+        .featured-content {
+            padding: 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .featured-content h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(29px, 3.4vw, 43px);
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .featured-content p {
+            color: #746570;
+            font-size: 14px;
+        }
+
+        .read-button {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 3px;
+            margin-top: 22px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* CONTENT */
+        .content-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(240px, 0.8fr);
+            gap: 45px;
+            align-items: start;
+            padding-bottom: 75px;
+        }
+
+        .section-heading {
+            border-bottom: 1px solid #d9cdd3;
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+        }
+
+        .section-heading h2 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            margin-top: 5px;
+        }
+
+        /* ARTICLE LIST */
+        .story-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .story {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 23px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid #e7ddd8;
+        }
+
+        .story img {
+            height: 185px;
+            border-radius: 5px;
+        }
+
+        .story-content {
+            padding: 5px 0;
+        }
+
+        .story-content h3 {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            line-height: 1.3;
+            margin: 8px 0;
+        }
+
+        .story-content p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .story-content a {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #a65d7b;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #f0e3e5;
+            padding: 25px;
+        }
+
+        .sidebar h3 {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .trend-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #d9c6d0;
+        }
+
+        .trend-item:last-child {
+            border-bottom: none;
+        }
+
+        .trend-item small {
+            color: #b56d86;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .trend-item h4 {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            line-height: 1.35;
+            margin-top: 5px;
+        }
+
+        .quote-box {
+            background: var(--dark);
+            color: white;
+            padding: 28px;
+            margin-top: 30px;
+        }
+
+        .quote-box .quote-mark {
+            color: var(--peach);
+            font-family: Georgia, serif;
+            font-size: 45px;
+            line-height: 1;
+        }
+
+        .quote-box p {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            line-height: 1.45;
+        }
+
+        .quote-box small {
+            display: block;
+            margin-top: 15px;
+            color: var(--peach);
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* BOTTOM BANNER */
+        .bottom-banner {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .bottom-banner h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(30px, 5vw, 45px);
+            margin: 12px 0;
+        }
+
+        .bottom-banner p {
+            color: #d7cbd9;
+            font-size: 14px;
+        }
+
+        .bottom-banner .read-button {
+            background: var(--peach);
+            color: var(--dark);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 35px 0 20px;
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding-bottom: 25px;
+        }
+
+        .footer-main p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 12px;
+        }
+
+        .copyright {
+            border-top: 1px solid #e4d9d5;
+            padding-top: 18px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 850px) {
+            .topbar {
+                flex-wrap: wrap;
+                padding: 17px 0;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                gap: 15px;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image,
+            .featured-image img {
+                min-height: 300px;
+                height: 300px;
+            }
+
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .quote-box {
+                margin-top: 0;
+                align-self: start;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                width: 92%;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .page-title {
+                padding: 45px 0 30px;
+            }
+
+            .featured-content {
+                padding: 25px;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .story img {
+                height: 230px;
+            }
+
+            .story-content h3 {
+                font-size: 23px;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-box {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container topbar">
+            <a href="index.html" class="logo">VIVID<span>.</span></a>
+
+            <nav>
+                <a href="index.html">Beranda</a>
+                <a href="#artikel">Artikel</a>
+                <a href="#tren">Tren</a>
+                <a href="#inspirasi">Inspirasi</a>
+                <a href="index.html#tentang">Tentang Kami</a>
+            </nav>
+
+            <a href="login.html" class="login">Masuk ↗</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="container page-title">
+            <p class="eyebrow">The Lifestyle Journal</p>
+
+            <h1>
+                Stories for a<br>
+                <span>better everyday.</span>
+            </h1>
+
+            <p>
+                Cerita dan inspirasi tentang fashion, kecantikan,
+                kesehatan, serta kebiasaan sederhana yang membuat
+                kehidupan sehari-hari lebih bermakna.
+            </p>
+        </section>
+
+        <!-- BERITA UNGGULAN -->
+        <section class="container featured">
+            <div class="featured-image">
+                <img
+                    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85"
+                    alt="Inspirasi fashion sehari-hari">
+            </div>
+
+            <div class="featured-content">
+                <p class="eyebrow">FEATURED STORY · FASHION</p>
+
+                <h2>Menemukan Gaya Pribadi di Tengah Tren yang Terus Berubah</h2>
+
+                <p>
+                    Berpakaian bukan hanya mengikuti tren.
+                    Kenali pilihan warna, model, dan kombinasi
+                    pakaian yang membuatmu merasa nyaman menjadi diri sendiri.
+                </p>
+
+                <a href="#artikel" class="read-button">
+                    Baca Cerita →
+                </a>
+            </div>
+        </section>
+
+        <!-- ARTIKEL DAN SIDEBAR -->
+        <section class="container content-layout" id="artikel">
+
+            <div>
+                <div class="section-heading">
+                    <p class="eyebrow">FRESH FROM VIVID</p>
+                    <h2>Cerita Pilihan</h2>
+                </div>
+
+                <div class="story-list">
+
+                    <article class="story">
+                        <img
+                            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80"
+                            alt="Perawatan kecantikan">
+
+                        <div class="story-content">
+                            <p class="eyebrow">BEAUTY & CARE</p>
+                            <h3>Merawat Diri Tidak Harus Selalu dengan Banyak Produk</h3>
+                            <p>
+                                Mulailah dari rutinitas sederhana yang sesuai
+                                kebutuhan. Konsistensi dan kebiasaan yang baik
+                                dapat menjadi bagian penting dari perawatan diri.
+                            </p>
+                            <a href="#inspirasi">Lanjutkan membaca →</a>
+                        </div>
+                    </article>
+
+                    <article class="story">
+                        <img
+                            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80"
+                            alt="Yoga dan aktivitas kebugaran">
+
+                        <div class="story-content">
+                            <p class="eyebrow">HEALTHY LIVING</p>
+                            <h3>Kebiasaan Kecil untuk Hari yang Lebih Seimbang</h3>
+                            <p>
+                                Menjaga waktu istirahat, bergerak aktif,
+                                dan mengatur kegiatan harian dapat membantu
+                                menciptakan pola hidup yang lebih teratur.
+                            </p>
+                            <a href="#inspirasi">Lanjutkan membaca →</a>
+                        </div>
+                    </article>
+
+                    <article class="story">
+                        <img
+                            src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=700&q=80"
+                            alt="Waktu untuk diri sendiri">
+
+                        <div class="story-content">
+                            <p class="eyebrow">SELF DEVELOPMENT</p>
+                            <h3>Belajar Menghargai Diri Tanpa Membandingkan Hidup</h3>
+                            <p>
+                                Setiap orang memiliki perjalanan berbeda.
+                                Fokus pada perkembangan diri dan tujuan pribadi
+                                bisa menjadi langkah untuk hidup lebih positif.
+                            </p>
+                            <a href="#inspirasi">Lanjutkan membaca →</a>
+                        </div>
+                    </article>
+
+                    <article class="story">
+                        <img
+                            src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=700&q=80"
+                            alt="Interior ruangan yang nyaman">
+
+                        <div class="story-content">
+                            <p class="eyebrow">HOME & LIVING</p>
+                            <h3>Menata Sudut Kamar agar Lebih Nyaman dan Menenangkan</h3>
+                            <p>
+                                Ruangan yang rapi tidak harus mahal.
+                                Pencahayaan, susunan barang, dan dekorasi
+                                sederhana bisa memberi suasana yang berbeda.
+                            </p>
+                            <a href="#inspirasi">Lanjutkan membaca →</a>
+                        </div>
+                    </article>
+
+                    <article class="story">
+                        <img
+                            src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=80"
+                            alt="Bunga dan inspirasi keseharian">
+
+                        <div class="story-content">
+                            <p class="eyebrow">DAILY INSPIRATION</p>
+                            <h3>Menikmati Hal Sederhana di Tengah Kesibukan</h3>
+                            <p>
+                                Meluangkan waktu untuk hobi, menikmati suasana,
+                                atau berbincang dengan orang terdekat bisa
+                                membuat hari terasa lebih menyenangkan.
+                            </p>
+                            <a href="#inspirasi">Lanjutkan membaca →</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside>
+                <div class="sidebar" id="tren">
+                    <div>
+                        <p class="eyebrow">TRENDING NOW</p>
+                        <h3>Topik Populer</h3>
+
+                        <div class="trend-item">
+                            <small>01 / STYLE</small>
+                            <h4>Outfit minimalis untuk berbagai kesempatan</h4>
+                        </div>
+
+                        <div class="trend-item">
+                            <small>02 / BEAUTY</small>
+                            <h4>Rutinitas perawatan diri yang praktis</h4>
+                        </div>
+
+                        <div class="trend-item">
+                            <small>03 / WELLNESS</small>
+                            <h4>Menyeimbangkan aktivitas dan waktu istirahat</h4>
+                        </div>
+
+                        <div class="trend-item">
+                            <small>04 / LIFESTYLE</small>
+                            <h4>Menciptakan ruang pribadi yang nyaman</h4>
+                        </div>
+                    </div>
+
+                    <div class="quote-box">
+                        <div class="quote-mark">“</div>
+                        <p>
+                            Tidak perlu sempurna untuk memulai
+                            hidup yang lebih baik.
+                        </p>
+                        <small>A NOTE FROM VIVID</small>
+                    </div>
+                </div>
+            </aside>
+
+        </section>
+
+        <!-- INSPIRASI -->
+        <section class="bottom-banner" id="inspirasi">
+            <p class="eyebrow">YOUR LIFE, YOUR STORY</p>
+
+            <h2>Temukan inspirasi versimu.</h2>
+
+            <p>
+                Kenali tren baru, kembangkan kebiasaan positif,
+                dan nikmati setiap prosesnya.
+            </p>
+
+            <a href="index.html" class="read-button">
+                Kembali ke Beranda →
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div>
+                    <a href="index.html" class="logo">VIVID<span>.</span></a>
+                    <p>Discover your style. Enjoy your life.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="#artikel">Artikel</a>
+                    <a href="#tren">Tren</a>
+                    <a href="#inspirasi">Inspirasi</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 VIVID Lifestyle Magazine. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
